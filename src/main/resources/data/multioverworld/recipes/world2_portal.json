@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "x": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "pattern": [
+    "###",
+    "#x#",
+    "###"
+  ],
+  "result": {
+    "item": "multioverworld:world2_portal"
+  }
+}
