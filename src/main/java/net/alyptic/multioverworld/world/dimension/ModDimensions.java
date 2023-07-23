@@ -8,7 +8,6 @@ import net.minecraft.world.level.Level;
 import net.alyptic.multioverworld.multioverworld;
 import net.minecraft.world.level.dimension.DimensionType;
 
-import java.util.function.Predicate;
 
 public class ModDimensions {
 
