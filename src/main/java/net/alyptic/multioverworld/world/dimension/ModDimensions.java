@@ -1,5 +1,6 @@
 package net.alyptic.multioverworld.world.dimension;
 
+
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -7,14 +8,17 @@ import net.minecraft.world.level.Level;
 import net.alyptic.multioverworld.multioverworld;
 import net.minecraft.world.level.dimension.DimensionType;
 
+import java.util.function.Predicate;
+
 public class ModDimensions {
 
-    public static ResourceKey<Level> OVER_WORLD2;
+
     public static final ResourceKey<Level> KJDIM_KEY = ResourceKey.create(Registry.DIMENSION_REGISTRY,
             new ResourceLocation(multioverworld.MOD_ID, "overworld2"));
     public static final ResourceKey<DimensionType> KJDIM_TYPE =
             ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY,
                     new ResourceLocation(multioverworld.MOD_ID, "overworld2"));
+
 
 
 

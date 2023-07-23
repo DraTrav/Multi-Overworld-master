@@ -7,6 +7,7 @@ package net.alyptic.multioverworld.block.custom;
 import net.alyptic.multioverworld.utility.coconut;
 import net.minecraft.core.BlockPos;
 import net.alyptic.multioverworld.world.dimension.ModDimensions;
+import net.minecraft.core.Position;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -87,15 +88,33 @@ public class world2_portal extends BaseEntityBlock {
                     destinationWorld.setBlockAndUpdate(pos.above(2), Blocks.AIR.defaultBlockState());
                 }
                 //Teleport the player to the new dim and teleport on top of the block
-                player.changeDimension(destinationWorld, new coconut());
-                player.teleportTo(x,y,z);
+                //make sure the player made it and fix it not usually not needed but better be safe than sorry!
+                Position newpos = player.position();
+                ResourceKey<Level> newlevel = player.level.dimension();
+                ServerLevel newdim = minecraftserver.getLevel(newlevel);
+                //break players cords apart
+                double newX = newpos.x();
+                double newY = newpos.y();
+                double newZ = newpos.z();
 
+                while(newdim != destinationWorld)
+                {
+                    player.changeDimension(destinationWorld, new coconut());
+                    newlevel = player.level.dimension();
+                    newdim = minecraftserver.getLevel(newlevel);
+                }
 
+                while(newX != x && newY != y && newZ != z) {
+                    //if failed go into loop until our player is safe
+                    player.teleportTo(x, y, z);
+                    newpos = player.position();
+                    newX = newpos.x();
+                    newY = newpos.y();
+                    newZ = newpos.z();
+                }
             }
         }
-
-
-        }
+    }
 
     @Override
     public @NotNull RenderShape getRenderShape (@NotNull BlockState render){
